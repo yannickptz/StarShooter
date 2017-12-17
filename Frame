@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Frame.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #a9b7c6; background-color: #2b2b2b; font-family: Monospaced}
+pre {color: #a9b7c6; background-color: #2b2b2b; font-family: Monospaced}
+table {color: #888888; background-color: #313335; font-family: Monospaced}
+.ST0 {color: #808080; font-family: Monospaced; font-weight: bold}
+.comment {color: #808080}
+.whitespace {color: #505050}
+.ST3 {color: #9876aa; font-family: Monospaced; font-style: italic}
+.string {color: #6a8759}
+.number {color: #6897bb}
+.ST1 {color: #9876aa}
+.ST2 {color: #ffc66d}
+.literal {color: #cc7832}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">/Users/Yannick/Documents/Informatik/StarShooter/src/Move/Frame.java</td></tr></table>
+<pre>
+ 1 <span class="comment">/*</span>
+ 2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+ 3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+ 4 <span class="comment"> * and open the template in the editor.</span>
+ 5 <span class="comment"> */</span>
+ 6 <span class="literal">package</span> Move;
+ 7 
+ 8 
+ 9 <span class="literal">import</span> java.awt.Color;
+10 <span class="literal">import</span> java.awt.Graphics;
+11 <span class="literal">import</span> javax.swing.JFrame;
+12 <span class="comment">import</span> <span class="comment">javax</span><span class="comment">.</span><span class="comment">swing</span><span class="comment">.</span><span class="comment">JLabel</span><span class="comment">;</span>
+13 <span class="comment">import</span> <span class="comment">java</span><span class="comment">.</span><span class="comment">awt</span><span class="comment">.</span><span class="comment">event</span><span class="comment">.</span><span class="comment">KeyEvent</span><span class="comment">;</span>
+14 <span class="comment">import</span> <span class="comment">java</span><span class="comment">.</span><span class="comment">awt</span><span class="comment">.</span><span class="comment">event</span><span class="comment">.</span><span class="comment">KeyListener</span><span class="comment">;</span>
+15 <span class="literal">import</span> java.awt.image.BufferStrategy;
+16 
+17 <span class="comment">/**</span>
+18 <span class="comment"> *</span>
+19 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">YannickAdmin</span>
+20  <span class="comment">*/</span>
+21 <span class="literal">public</span> <span class="literal">class</span> Frame <span class="literal">extends</span> JFrame {
+22     
+23   
+24     
+25     <span class="literal">final</span> Player <span class="ST1">player</span>;
+26     <span class="literal">final</span> Background <span class="ST1">bg</span>;
+27     
+28     
+29     
+30     
+31     <span class="literal">private</span> BufferStrategy <span class="ST1">strat</span>;
+32     
+33     
+34     
+35     
+36     <span class="literal">public</span> Frame(Player player, Background bg) {
+37         
+38         <span class="literal">super</span> (<span class="string">&quot;</span><span class="string">Move</span><span class="string">&quot;</span>);
+39         
+40         addKeyListener(<span class="literal">new</span> Keyboard());
+41         <span class="literal">this</span>.<span class="ST1">player</span> = player;
+42         <span class="literal">this</span>.<span class="ST1">bg</span> = bg;
+43   
+44     }
+45   
+46     <span class="literal">public</span> <span class="literal">void</span> <span class="ST2">makeStrat</span>(){
+47     
+48     createBufferStrategy(<span class="number">2</span>);
+49         <span class="ST1">strat</span> = getBufferStrategy();
+50     
+51     }
+52     
+53     
+54 
+55      
+56     
+57     <span class="literal">public</span> <span class="literal">void</span> <span class="ST2">repaintScreen</span>() {
+58      Graphics g =  <span class="ST1">strat</span>.getDrawGraphics();
+59      draw (g);
+60      
+61      g.dispose();
+62      <span class="ST1">strat</span>.show();
+63            
+64     
+65 }
+66 
+67   <span class="literal">private</span> <span class="literal">void</span> <span class="ST2">draw</span>(Graphics g){
+68             g.setColor(Color.<span class="ST3">GREEN</span>);
+69             g.drawImage(<span class="ST1">bg</span>.getLook(), <span class="ST1">bg</span>.getX(), <span class="number">0</span>, <span class="literal">null</span>);
+70             g.drawImage(<span class="ST1">bg</span>.getLook(),<span class="ST1">bg</span>.getX()+<span class="ST1">bg</span>.getLook().getWidth(), <span class="number">0</span>, <span class="literal">null</span>);
+71             g.drawImage(<span class="ST1">bg</span>.getLook(),<span class="ST1">bg</span>.getX(),<span class="ST1">bg</span>.getLook().getHeight(), <span class="literal">null</span>);
+72             g.drawImage(<span class="ST1">bg</span>.getLook(),<span class="ST1">bg</span>.getX()+<span class="ST1">bg</span>.getLook().getWidth(),<span class="ST1">bg</span>.getLook().getHeight(),<span class="literal">null</span>);
+73             g.drawImage(<span class="ST1">player</span>.getLook(), <span class="ST1">player</span>.getBounding().<span class="ST1">x</span>, <span class="ST1">player</span>.getBounding().<span class="ST1">y</span>, <span class="literal">null</span>) ;
+74             
+75   
+76   }
+77     
+78 
+79 
+80  
+81     
+82   
+83 }
+84 
+</pre></body>
+</html>
